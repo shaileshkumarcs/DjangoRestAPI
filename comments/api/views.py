@@ -29,16 +29,28 @@ from comments.models import Comments
 
 from .serializers import (
     CommentsSerializer,
-    CommentsDetailSerializer
+    CommentsDetailSerializer,
+    create_comments_serializer,
     )
 
-# class PostCreateAPIView(CreateAPIView):
-#     queryset = Post.objects.all()
-#     serializer_class = PostCreateUpdateSerializer
-#     permission_classes = [IsAuthenticated]
-#
-#     def perform_create(self, serializer):
-#         serializer.save(user=self.request.user)
+class CommentCreateAPIView(CreateAPIView):
+    queryset = Comments.objects.all()
+    #serializer_class = PostCreateUpdateSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_serializer_class(self):
+        medel_type = self.request.GET.get("type")
+        slug = self.request.GET.get("slug")
+        parent_id = self.request.GET.get("parent_id", None)
+        return create_comments_serializer(
+            model_type='post',
+            slug=None,
+            parent_id=None,
+            user = self.request.user
+        )
+
+    # def perform_create(self, serializer):
+    #     serializer.save(user=self.request.user)
 
 class CommentsDetailsAPIView(RetrieveAPIView):
     queryset = Comments.objects.all()
