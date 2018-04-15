@@ -114,3 +114,12 @@ class CommentsDetailSerializer(ModelSerializer):
         if obj.is_parent:
             return obj.children().count()
         return 0
+
+class CommentsEditSerializer(ModelSerializer):
+    class Meta:
+        model = Comments
+        fields = [
+            'id',
+            'content',
+            'timestamp'
+        ]
