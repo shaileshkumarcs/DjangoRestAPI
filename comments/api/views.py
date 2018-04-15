@@ -29,7 +29,7 @@ from posts.api.pagination import PostLimtOffsetPagination, PostPageNumberPaginat
 from comments.models import Comments
 
 from .serializers import (
-    CommentsSerializer,
+    CommentsListSerializer,
     CommentsDetailSerializer,
     create_comments_serializer,
     )
@@ -87,7 +87,7 @@ class CommentsDetailsAPIView(DestroyModelMixin, UpdateModelMixin, RetrieveAPIVie
 #    # lookup_url_kwarg = "abc"
 
 class CommentsListAPIView(ListAPIView):
-    serializer_class = CommentsSerializer
+    serializer_class = CommentsListSerializer
     filter_backends = [SearchFilter]
     search_fields = ['content','user__first_name']
 
@@ -95,7 +95,7 @@ class CommentsListAPIView(ListAPIView):
 
     def get_queryset(self, *args, **kwargs):
         #queryset_list = super(PostListAPIView, self).get_queryset(*args, **kwargs)
-        queryset_list = Comments.objects.all() # filter(user= self.request.user)
+        queryset_list = Comments.objects.filter(id__gte=0) # filter(user= self.request.user)
         query = self.request.GET.get("q")
         if query:
             queryset_list = queryset_list.filter(
