@@ -46,12 +46,14 @@ class PostCreateAPIView(CreateAPIView):
 class PostDetailsAPIView(RetrieveAPIView):
     queryset = Post.objects.all()
     serializer_class = PostDetailsSerializer
+    permission_classes = [AllowAny]
     lookup_field = "slug"
    # lookup_url_kwarg = "abc"
 
 class PostUpdateAPIView(RetrieveUpdateAPIView):
     queryset = Post.objects.all()
     serializer_class = PostCreateUpdateSerializer
+    permission_classes = [IsOwnerOrReadOnly]
     lookup_field = "slug"
    # lookup_url_kwarg = "abc"
     permission_classes = [IsAuthenticatedOrReadOnly,IsOwnerOrReadOnly]
@@ -62,6 +64,7 @@ class PostUpdateAPIView(RetrieveUpdateAPIView):
 class PostDeleteAPIView(DestroyAPIView):
     queryset = Post.objects.all()
     serializer_class = PostDetailsSerializer
+    permission_classes = [IsOwnerOrReadOnly]
     lookup_field = "slug"
    # lookup_url_kwarg = "abc"
 
