@@ -10,6 +10,7 @@ from comments.models import Comments
 
 from posts.models import Post
 
+
 class PostCreateUpdateSerializer(ModelSerializer):
     class Meta:
         model = Post
@@ -25,6 +26,7 @@ post_detail_url = HyperlinkedIdentityField(
         view_name='posts-api:detail',
         lookup_field='slug'
     )
+
 
 class PostDetailsSerializer(ModelSerializer):
     url = post_detail_url

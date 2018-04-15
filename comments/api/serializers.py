@@ -49,15 +49,15 @@ def create_comments_serializer(model_type='post', slug=None, parent_id=None, use
                 main_user = user
             else:
                 main_user = User.objects.all().first()
-            model_type = self.model_type
-            slug = self.slug
-            parent_obj = self.parent_obj
+            model_type=self.model_type
+            slug=self.slug
+            parent_obj=self.parent_obj
             comment = Comments.objects.create_by_model_type(
                 model_type, slug, content, main_user,
-                    parent_obj=parent_obj
+                parent_obj=parent_obj,
 
             )
-            return comment,
+            return comment
 
     return CommentCreateSerializer
 

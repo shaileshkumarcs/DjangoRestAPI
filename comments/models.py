@@ -21,9 +21,10 @@ class CommentManager(models.Manager):
         if model_qs.exists():
             SomeModel = model_qs.first().model_class()
             obj_qs = SomeModel.objects.filter(slug=slug)
-            if obj_qs.exists() and obj_qs.count() != 1:
+            if obj_qs.exists() and obj_qs.count() == 1:
                 instance = self.model()
-                instance.content = user
+                instance.content = content
+                instance.user = user
                 instance.content_type = model_qs.first()
                 instance.object_id = obj_qs.first().id
                 if parent_obj:
