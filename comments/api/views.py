@@ -88,7 +88,7 @@ class CommentsDetailsAPIView(DestroyModelMixin, UpdateModelMixin, RetrieveAPIVie
 
 class CommentsListAPIView(ListAPIView):
     serializer_class = CommentsListSerializer
-    permission_classes = [AllowAny]
+    #permission_classes = [AllowAny]
     filter_backends = [SearchFilter]
     search_fields = ['content','user__first_name']
 

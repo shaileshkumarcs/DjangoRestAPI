@@ -159,3 +159,21 @@ REST_FRAMEWORK = {
     )
 }
 
+'''
+
+curl -X POST -d "username=anotheruser&password=anotheruser" http://localhost:8000/api/auth/token/
+
+
+eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6InNoYWlsZXNoIiwiZXhwIjoxNTIzODk5NjI2LCJlbWFpbCI6InNoYWlsZXNoLmt1bWFyY3NAZ21haWwuY29tIn0.R13qbBZzT5eGeV4ZU4aBphukjMdH6js-RkV1Om6TAIw
+
+
+curl -H "Authorization: JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxMCwidXNlcm5hbWUiOiJhbm90aGVydXNlciIsImV4cCI6MTUyMzkwMTU3MywiZW1haWwiOiJhbm90aGVyQGdtYWlsLmNvbSJ9.o2-XmU6DwnYbxZydUTpK_b5HVrUbjOAi51TN7fnsT-g" http://localhost:8000/api/comments/
+
+
+curl -X POST -H "Authorization: JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxMCwidXNlcm5hbWUiOiJhbm90aGVydXNlciIsImV4cCI6MTUyMzkwMTU3MywiZW1haWwiOiJhbm90aGVyQGdtYWlsLmNvbSJ9.o2-XmU6DwnYbxZydUTpK_b5HVrUbjOAi51TN7fnsT-g" -H "Content-Type: application/json" -d  '{"content":"Admin Shailesh Comment admin"}' 'http://localhost:8000/api/comments/create/?type=post&slug=my-title'
+
+
+curl http://localhost:8000/api/comments/
+
+
+'''
